@@ -38,16 +38,19 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    const result = await submitContact(data);
-    setIsSubmitting(false);
-
-    if (result.success) {
-      setIsSuccess(true);
-      reset();
-      // Optionally reset success state after a delay
-      // setTimeout(() => setIsSuccess(false), 5000);
-    } else {
-      alert("Error: " + result.error);
+    try {
+      const result = await submitContact(data);
+      if (result.success) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        alert("System Error: " + result.error);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network Error: Could not connect to the database. Make sure Vercel Postgres is connected.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
