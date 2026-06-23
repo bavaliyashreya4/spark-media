@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -12,10 +12,9 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const NAV_LINKS = [
-  { name: "/services", href: "/services" },
-  { name: "/work", href: "/work" },
-  { name: "/process", href: "/process" },
-  { name: "/contact", href: "/contact" },
+  { name: "Services", href: "/services" },
+  { name: "Our Work", href: "/work" },
+  { name: "Process", href: "/process" },
 ];
 
 export default function Navbar() {
@@ -25,18 +24,17 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[var(--color-brand-deep)] border-b border-cyan-thin/30">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 z-50 w-full transition-all duration-300 glass border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group z-50">
-          <Zap className="w-5 h-5 text-[var(--color-brand-cyan)] group-hover:scale-110 transition-transform duration-200" />
-          <span className="font-bold text-lg tracking-wider">
-            SPARK MEDIA
+        <Link href="/" className="flex items-center group z-50">
+          <span className="font-black text-2xl tracking-[0.2em] text-white transition-all duration-300 group-hover:text-[var(--color-brand-pink)]">
+            SPARK
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 bg-black/40 px-8 py-3 rounded-full border border-white/10 backdrop-blur-md">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -44,8 +42,8 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors duration-200 hover:text-[var(--color-brand-cyan)]",
-                  isActive ? "text-[var(--color-brand-cyan)]" : "text-white/70"
+                  "text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
+                  isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-pink)] to-[var(--color-brand-cyan)]" : "text-white/80 hover:text-white"
                 )}
               >
                 {link.name}
@@ -54,9 +52,19 @@ export default function Navbar() {
           })}
         </div>
 
+        {/* CTA Desktop */}
+        <div className="hidden md:block">
+          <Link 
+            href="/contact"
+            className="px-6 py-3 rounded-full bg-transparent border border-white/30 text-white font-bold text-sm hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Start Project
+          </Link>
+        </div>
+
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden z-50 text-white hover:text-[var(--color-brand-cyan)] transition-colors"
+          className="md:hidden z-50 p-2 rounded-full bg-white/5 text-white hover:bg-white/10 transition-colors backdrop-blur-md"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -66,21 +74,28 @@ export default function Navbar() {
         {/* Mobile Nav Overlay */}
         <div
           className={cn(
-            "fixed inset-0 bg-[var(--color-brand-deep)] flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
+            "fixed inset-0 bg-[var(--color-brand-surface)]/95 backdrop-blur-xl flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
             isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
           )}
         >
-          <div className="flex flex-col gap-8 text-center">
+          <div className="flex flex-col gap-8 text-center items-center">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-2xl font-bold hover:text-[var(--color-brand-cyan)] hover:glow-cyan transition-all duration-200"
+                className="text-3xl font-bold text-white hover:text-[var(--color-brand-pink)] transition-all duration-300"
               >
                 {link.name}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 px-8 py-4 rounded-full bg-transparent border border-white/30 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Start Project
+            </Link>
           </div>
         </div>
       </div>

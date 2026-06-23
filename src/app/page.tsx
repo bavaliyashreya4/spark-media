@@ -1,256 +1,244 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight, Sparkles, TrendingUp, Palette, Target } from "lucide-react";
 
 const STATS = [
-  { label: "Brands Scaled", value: "50+" },
-  { label: "Avg Reach Increase", value: "3.2x" },
-  { label: "Retention Rate", value: "87%" },
-  { label: "Campaigns Launched", value: "120+" },
-  { label: "Data Points Analyzed", value: "10M+" },
+  { label: "Brands Elevated", value: "150+" },
+  { label: "Avg Revenue Growth", value: "3.5x" },
+  { label: "Client Retention", value: "94%" },
+  { label: "Global Campaigns", value: "200+" },
 ];
 
 const SERVICES = [
   {
     id: "social",
-    title: "Social Media Management",
-    desc: "Data-driven organic growth and community building.",
-    icon: "$ ./social",
+    title: "Social Growth",
+    desc: "Viral campaigns and community building that drives real engagement and loyalty.",
+    icon: <TrendingUp className="w-8 h-8 text-[var(--color-brand-pink)]" />,
+    color: "from-[var(--color-brand-pink)] to-rose-500"
   },
   {
     id: "brand",
-    title: "Brand Identity Design",
-    desc: "Precision engineering for your visual presence.",
-    icon: "$ ./brand",
-  },
-  {
-    id: "content",
-    title: "Content Creation",
-    desc: "High-conversion assets engineered for engagement.",
-    icon: "$ ./content",
+    title: "Brand Identity",
+    desc: "Unforgettable visual identities that make your competitors irrelevant.",
+    icon: <Palette className="w-8 h-8 text-[var(--color-brand-violet)]" />,
+    color: "from-[var(--color-brand-violet)] to-purple-600"
   },
   {
     id: "ads",
-    title: "Paid Ads & Analytics",
-    desc: "Algorithm-optimized campaigns for maximum ROI.",
-    icon: "$ ./ads",
+    title: "Performance Ads",
+    desc: "High-ROI paid campaigns engineered for maximum conversion and scale.",
+    icon: <Target className="w-8 h-8 text-[var(--color-brand-cyan)]" />,
+    color: "from-[var(--color-brand-cyan)] to-blue-500"
+  },
+  {
+    id: "content",
+    title: "Creative Content",
+    desc: "Scroll-stopping assets, from 3D motion graphics to cinematic video production.",
+    icon: <Sparkles className="w-8 h-8 text-[var(--color-brand-orange)]" />,
+    color: "from-[var(--color-brand-orange)] to-yellow-500"
   },
 ];
 
 const CASE_STUDIES = [
   {
-    id: "fintech-startup",
-    title: "ScalePay App Launch",
-    category: "Fintech",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-    beforeStat: "1.2k Users",
-    afterStat: "45k Users",
+    id: "ecommerce-brand",
+    title: "Lumina Cosmetics",
+    category: "E-Commerce",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
+    result: "+300% Online Sales",
   },
   {
-    id: "ecommerce-brand",
-    title: "Lumina Gear Global",
-    category: "E-Commerce",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-    beforeStat: "$40k/mo",
-    afterStat: "$1.8L/mo",
+    id: "fintech-startup",
+    title: "Nimbus Tech App",
+    category: "SaaS",
+    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=800",
+    result: "100k+ Active Users",
   },
 ];
-
-// Typing Text Component
-const TypingText = ({ text }: { text: string }) => {
-  const [displayedText, setDisplayedText] = useState("");
-  
-  useEffect(() => {
-    let i = 0;
-    setDisplayedText(""); // Reset text on mount
-    const typingInterval = setInterval(() => {
-      if (i < text.length) {
-        setDisplayedText(text.substring(0, i + 1));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
-    
-    return () => {
-      clearInterval(typingInterval);
-    };
-  }, [text]);
-
-  return (
-    <span className="inline-block relative">
-      {displayedText}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ repeat: Infinity, duration: 0.8 }}
-        className="inline-block w-3 md:w-6 h-[1em] bg-[var(--color-brand-cyan)] ml-2 align-middle -mt-2"
-      />
-    </span>
-  );
-};
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000"
-            alt="Abstract dark grid"
-            fill
-            className="object-cover opacity-10"
-            priority
+      <section className="relative min-h-[100vh] flex flex-col justify-center items-center px-6 pt-24 overflow-hidden">
+        {/* Animated Background Gradients */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              rotate: [0, 90, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[var(--color-brand-pink)] rounded-full mix-blend-screen filter blur-[150px] opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-deep)] to-transparent" />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.5, 1],
+              rotate: [0, -90, 0],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] bg-[var(--color-brand-cyan)] rounded-full mix-blend-screen filter blur-[150px] opacity-20"
+          />
         </div>
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-start">
-          <div className="flex items-center gap-3 text-[var(--color-brand-cyan)] mb-6 text-sm md:text-base font-bold">
-            <Terminal className="w-5 h-5" />
-            <span>SYSTEM_READY_</span>
-          </div>
+        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 border border-white/10"
+          >
+            <Sparkles className="w-4 h-4 text-[var(--color-brand-cyan)]" />
+            <span className="text-sm font-semibold text-white/90">Award Winning Agency 2026</span>
+          </motion.div>
           
-          <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight">
-            <TypingText text="WE DON'T GUESS. WE GROW." />
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6 leading-[0.9]"
+          >
+            IGNITE YOUR <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-pink)] via-[var(--color-brand-violet)] to-[var(--color-brand-cyan)] pb-4 block">
+              BRAND.
+            </span>
+          </motion.h1>
           
-          <p className="text-lg md:text-xl text-[var(--color-brand-cyan-muted)] max-w-2xl mb-12">
-            Data-driven execution. Sharp design. Precision marketing that scales your brand with algorithmic certainty.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-2xl text-white/70 max-w-2xl mx-auto mb-12 font-medium"
+          >
+            We blend breathtaking design with data-driven strategy to create digital experiences that refuse to be ignored.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center"
+          >
             <Link 
               href="/contact" 
-              className="px-8 py-4 bg-[var(--color-brand-cyan)] text-[var(--color-brand-deep)] font-bold uppercase tracking-wider hover:bg-white transition-colors duration-200 border border-[var(--color-brand-cyan)] flex items-center justify-center gap-2 group"
+              className="px-8 py-4 rounded-full bg-transparent border border-white/30 text-white font-bold text-lg hover:bg-white hover:text-black hover:scale-105 transition-all duration-300 shadow-md flex items-center justify-center gap-2"
             >
-              Initiate sequence
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Start Project <ArrowRight className="w-5 h-5" />
             </Link>
             <Link 
               href="/work" 
-              className="px-8 py-4 bg-transparent text-[var(--color-brand-cyan)] border border-[var(--color-brand-cyan)] font-bold uppercase tracking-wider hover:bg-[var(--color-brand-cyan)] hover:text-[var(--color-brand-deep)] transition-colors duration-200 flex items-center justify-center"
+              className="px-8 py-4 rounded-full glass text-white border border-white/10 font-bold text-lg hover:bg-white/10 transition-colors duration-300 flex items-center justify-center"
             >
-              View Output log
+              See Our Work
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* STATS TICKER */}
-      <div className="border-y border-cyan-thin/30 bg-[var(--color-brand-dark)] overflow-hidden py-4 flex relative z-20">
+      {/* STATS STRIP */}
+      <div className="border-y border-white/5 bg-black/40 backdrop-blur-md overflow-hidden py-8 flex relative z-20">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
           className="flex whitespace-nowrap"
         >
-          {/* Double the stats to create seamless loop */}
-          {[...STATS, ...STATS].map((stat, i) => (
-            <div key={i} className="flex items-center gap-3 px-8 md:px-16 border-r border-cyan-thin/20 last:border-none">
-              <span className="text-[var(--color-brand-cyan)] font-bold text-xl md:text-3xl">{stat.value}</span>
-              <span className="text-xs md:text-sm text-white/50 uppercase tracking-widest">{stat.label}</span>
+          {[...STATS, ...STATS, ...STATS].map((stat, i) => (
+            <div key={i} className="flex flex-col items-center justify-center px-16 md:px-24 border-r border-white/10 last:border-none">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-brand-cyan)] to-[var(--color-brand-violet)] font-black text-4xl md:text-5xl mb-2">{stat.value}</span>
+              <span className="text-sm md:text-base text-white/60 uppercase tracking-widest font-semibold">{stat.label}</span>
             </div>
           ))}
         </motion.div>
       </div>
 
-      {/* WHAT WE DO */}
+      {/* WHAT WE DO / BENTO BOX */}
       <section className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <span className="text-[var(--color-brand-cyan-muted)] text-sm mb-2 block">// core_modules</span>
-            <h2 className="text-4xl md:text-5xl font-bold">WHAT WE DO.</h2>
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-white">OUR EXPERTISE</h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto">Everything you need to dominate your market, housed under one creative roof.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--color-brand-cyan)]/20 border border-[var(--color-brand-cyan)]/20">
-            {SERVICES.map((service) => (
-              <div 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {SERVICES.map((service, index) => (
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={service.id} 
-                className="bg-[var(--color-brand-deep)] p-10 md:p-16 group hover:bg-[var(--color-brand-dark)] transition-colors duration-200"
+                className="glass p-10 md:p-12 rounded-3xl group hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden border border-white/10 hover:border-white/30"
               >
-                <div className="text-[var(--color-brand-cyan)] text-sm mb-6 opacity-60 font-bold group-hover:opacity-100 transition-opacity">
+                {/* Hover Gradient Splash */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                <div className="bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-[var(--color-brand-cyan-muted)]">{service.desc}</p>
-              </div>
+                <h3 className="text-3xl font-bold mb-4 text-white transition-colors duration-300 relative z-10">{service.title}</h3>
+                <p className="text-lg text-white/70 group-hover:text-white/90 leading-relaxed transition-colors duration-300 relative z-10">{service.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* FEATURED WORK */}
-      <section className="py-32 px-6 bg-[var(--color-brand-dark)] relative z-10 border-t border-cyan-thin/30">
+      <section className="py-32 px-6 relative z-10 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-[var(--color-brand-cyan-muted)] text-sm mb-2 block">// execution_results</span>
-              <h2 className="text-4xl md:text-5xl font-bold">PROVEN OUTPUT.</h2>
+              <h2 className="text-5xl md:text-7xl font-black mb-4 text-white">LATEST WORK</h2>
+              <p className="text-xl text-white/60">Ideas that changed the game.</p>
             </div>
-            <Link href="/work" className="text-[var(--color-brand-cyan)] hover:text-white transition-colors flex items-center gap-2 group border-b border-transparent hover:border-white pb-1 w-fit">
-              View full directory <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Link href="/work" className="text-lg font-bold text-[var(--color-brand-pink)] hover:text-white transition-colors flex items-center gap-2 group w-fit">
+              View All Projects <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {CASE_STUDIES.map((study) => (
-              <Link 
-                key={study.id} 
-                href={`/work/${study.id}`}
-                className="group block relative border border-cyan-thin/30 bg-[var(--color-brand-deep)] overflow-hidden"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {CASE_STUDIES.map((study, index) => (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                key={study.id}
               >
-                <div className="relative h-80 w-full overflow-hidden">
-                  <div className="absolute inset-0 bg-[var(--color-brand-cyan)]/20 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-300" />
+                <Link 
+                  href={`/work/${study.id}`}
+                  className="group block relative rounded-3xl overflow-hidden aspect-[4/3]"
+                >
                   <Image
                     src={study.image}
                     alt={study.title}
                     fill
-                    className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   
-                  {/* Hover Stat Reveal Overlay */}
-                  <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 bg-gradient-to-t from-[var(--color-brand-deep)] via-[var(--color-brand-deep)]/80 to-transparent translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="flex items-center gap-3 mb-3 text-[var(--color-brand-cyan)] text-sm font-bold">
-                      <span>[{study.category}]</span>
-                    </div>
-                    <h3 className="text-3xl font-bold mb-6">{study.title}</h3>
-                    
-                    {/* Before/After stat swipe */}
-                    <div className="flex items-center gap-6 border-t border-cyan-thin/30 pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                      <div>
-                        <p className="text-xs text-white/50 mb-1">BEFORE</p>
-                        <p className="text-xl line-through text-red-400/70">{study.beforeStat}</p>
-                      </div>
-                      <ArrowRight className="w-6 h-6 text-[var(--color-brand-cyan)]" />
-                      <div>
-                        <p className="text-xs text-white/50 mb-1">AFTER</p>
-                        <p className="text-2xl text-[var(--color-brand-cyan)] font-bold">{study.afterStat}</p>
-                      </div>
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+                  
+                  {/* Content */}
+                  <div className="absolute inset-0 p-10 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-bold mb-4 w-fit border border-white/20">
+                      {study.category}
+                    </span>
+                    <h3 className="text-4xl font-bold mb-2 text-white">{study.title}</h3>
+                    <div className="flex items-center gap-2 text-[var(--color-brand-cyan)] font-bold text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      <TrendingUp className="w-6 h-6" /> {study.result}
                     </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* BOTTOM CTA */}
-      <section className="py-32 px-6 relative z-10 flex flex-col items-center text-center">
-        <h2 className="text-3xl md:text-6xl font-bold mb-8 max-w-3xl leading-tight">
-          READY TO UPGRADE YOUR BRAND'S OPERATING SYSTEM?
-        </h2>
-        <Link 
-          href="/contact" 
-          className="px-10 py-5 bg-[var(--color-brand-cyan)] text-[var(--color-brand-deep)] font-bold uppercase tracking-wider hover:bg-white transition-colors duration-200 flex items-center justify-center gap-3 group text-lg"
-        >
-          Start a project
-          <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-        </Link>
       </section>
     </div>
   );

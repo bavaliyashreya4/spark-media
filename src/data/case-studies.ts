@@ -5,7 +5,7 @@ export const CASE_STUDIES = [
     client: "ScalePay Inc.",
     category: "Fintech",
     duration: "6 Months",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+    image: "/portfolio_1.png",
     challenge: "A well-funded fintech startup needed to acquire 10k users in their first 3 months post-launch, but faced extreme CAC (Customer Acquisition Cost) in a saturated market.",
     strategy: "We bypassed traditional ad platforms and engineered a viral referral loop combined with high-impact influencer seeding. We positioned them not as a utility, but as a status symbol for early adopters.",
     execution: [
@@ -25,7 +25,7 @@ export const CASE_STUDIES = [
     client: "Lumina Outdoors",
     category: "E-Commerce",
     duration: "12 Months",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+    image: "/portfolio_2.png",
     challenge: "Stagnant revenue growth and low returning customer rate. Their ROAS (Return on Ad Spend) was dropping below profitability.",
     strategy: "Shifted focus from acquisition to retention. Implemented a robust email/SMS funnel and restructured their ad creatives to focus on user-generated content (UGC) rather than polished studio shots.",
     execution: [
@@ -45,7 +45,7 @@ export const CASE_STUDIES = [
     client: "Dr. Elena Rivers",
     category: "Personal Brand",
     duration: "4 Months",
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1200",
+    image: "/portfolio_3.png",
     challenge: "A leading industry expert with zero digital presence wanted to launch a high-ticket consulting offer.",
     strategy: "Built a high-authority LinkedIn and YouTube content engine. Positioned her as the definitive thought leader in her niche before pitching any services.",
     execution: [
@@ -65,7 +65,7 @@ export const CASE_STUDIES = [
     client: "Apex Fitness",
     category: "Local Business",
     duration: "3 Months",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200",
+    image: "/portfolio_4.png",
     challenge: "A premium boutique gym struggling to fill classes post-launch despite a prime location.",
     strategy: "Hyper-local paid ads paired with a '7-Day Transformation' challenge to lower the barrier to entry and capture lead data.",
     execution: [
