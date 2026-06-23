@@ -28,9 +28,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center group z-50">
-          <span className="font-black text-2xl tracking-[0.2em] text-white transition-all duration-300 group-hover:text-[var(--color-brand-pink)]">
-            SPARK
-          </span>
+          <div className="flex flex-col">
+            <span className="font-black text-2xl tracking-[0.2em] leading-none text-white transition-all duration-300 group-hover:text-[var(--color-brand-pink)]">
+              SPARK
+            </span>
+            <span className="text-[10px] tracking-[0.4em] font-medium text-white/50 leading-none mt-1">
+              MEDIA
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}

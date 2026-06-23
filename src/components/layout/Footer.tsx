@@ -30,9 +30,14 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center group mb-6 w-fit">
-              <span className="font-black text-4xl tracking-[0.2em] text-white transition-all duration-300 group-hover:text-[var(--color-brand-pink)]">
-                SPARK
-              </span>
+              <div className="flex flex-col">
+                <span className="font-black text-4xl tracking-[0.2em] leading-none text-white transition-all duration-300 group-hover:text-[var(--color-brand-pink)]">
+                  SPARK
+                </span>
+                <span className="text-[14px] tracking-[0.4em] font-medium text-white/50 leading-none mt-2">
+                  MEDIA
+                </span>
+              </div>
             </Link>
             <p className="text-white/90 max-w-sm mb-6 text-lg font-medium">
               Bold, colorful, and beautiful. We build digital experiences that dominate their space and leave a lasting impression.
